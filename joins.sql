@@ -12,29 +12,29 @@
 
 -- Join Category Name with Product Table
 
--- CREATE TABLE product(
---     ProductID INT PRIMARY KEY NOT NULL,
---     ProductName VARCHAR(50) NOT NULL,
---     CategoryID INT NOT NULL,
---     Price DECIMAL(3,2) -- DECIMAL(total_digit, digit after decimal)
--- );
+CREATE TABLE product(
+    ProductID INT PRIMARY KEY NOT NULL,
+    ProductName VARCHAR(50) NOT NULL,
+    CategoryID INT NOT NULL,
+    Price DECIMAL(3,2) -- DECIMAL(total_digit, digit after decimal)
+);
 
--- CREATE TABLE ProductCategory(
---     CategoryID INT NOT NULL,
---     CategoryName VARCHAR(50) NOT NULL,
---     Description VARCHAR(200) NOT NULL
--- );
+CREATE TABLE ProductCategory(
+    CategoryID INT NOT NULL,
+    CategoryName VARCHAR(50) NOT NULL,
+    Description VARCHAR(200) NOT NULL
+);
 
--- INSERT INTO product(ProductID,ProductName,CategoryID,Price) VALUES
---     (1,'Acrylic Sheet',1,1.80),
---     (2,'Glossy Sheet',3,1.09),
---     (3,'Matte Sheet',2,1.00),
---     (4,'Acrylic Sheet Premium',4,3.80);
+INSERT INTO product(ProductID,ProductName,CategoryID,Price) VALUES
+    (1,'Acrylic Sheet',1,1.80),
+    (2,'Glossy Sheet',3,1.09),
+    (3,'Matte Sheet',2,1.00),
+    (4,'Acrylic Sheet Premium',4,3.80);
 
--- INSERT INTO ProductCategory(CategoryID,CategoryName,Description) VALUES
---     (1,'Stationary','Printing, Papers, Stickers'),
---     (2,'Sheets','Book, Hardcover'),
---     (3,'Print','Softcover, Hardcover');
+INSERT INTO ProductCategory(CategoryID,CategoryName,Description) VALUES
+    (1,'Stationary','Printing, Papers, Stickers'),
+    (2,'Sheets','Book, Hardcover'),
+    (3,'Print','Softcover, Hardcover');
 
 SELECT * FROM product;
 SELECT * FROM ProductCategory;
