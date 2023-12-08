@@ -49,8 +49,6 @@ SELECT product.ProductName, ProductCategory.CategoryID FROM product LEFT JOIN Pr
 -- RIGHT JOIN or RIGHT OUTER JOIN: Returns all keywords from right table and matching elements from left table
 SELECT product.ProductName, ProductCategory.Description FROM product RIGHT OUTER JOIN ProductCategory on product.ProductID = ProductCategory.CategoryID ORDER BY product.ProductID;
 
--- SELF JOIN: 
-
 -- FULL JOIN or FULL OUTER JOIN: Returns all records when there is match found in two tables.
 -- FULL JOIN: SELECT columns FROM TABLE FULL OUTER JOIN TABLE on COLUMN.1 = COLUMN.2 CONDITION (ORDER BY, WHERE)
 SELECT product.ProductName, ProductCategory.CategoryName, product.Price FROM product FULL OUTER JOIN ProductCategory ON product.ProductID = ProductCategory.CategoryID ORDER BY product.CategoryID;
