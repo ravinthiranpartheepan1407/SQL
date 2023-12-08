@@ -65,7 +65,7 @@ CREATE TABLE SalesData(
 
 SELECT floor(random()*10+1)::INT as Random;
 
-Random Funtion Creation: Method 2
+-- Random Funtion Creation: Method 2
 CREATE OR REPLACE FUNCTION randomGen(low INT, high INT)
     RETURNS INT AS
 $$
@@ -101,7 +101,6 @@ INSERT INTO ProductsData(
 SELECT * FROM ProductsData;
 
 -- Generating Random Sales ID
-
 CREATE OR REPLACE FUNCTION genSaleID(high INT,step INT)
     RETURNS INT AS
 $$
@@ -111,7 +110,6 @@ END;
 $$ LANGUAGE 'plpgsql' STRICT;
 
 -- Generating Random Sales Date between '2023-12-01 to 2023-12-08
-
 CREATE OR REPLACE FUNCTION genSaleDate(startDate DATE, endDate DATE)
     RETURNS DATE AS
 $$
@@ -121,7 +119,6 @@ END;
 $$ LANGUAGE 'plpgsql' STRICT;
 
 -- Generating Random Quantity Values
-
 CREATE OR REPLACE FUNCTION genQuantity(val int, step int)
     RETURNS INT AS
 $$
@@ -130,6 +127,32 @@ BEGIN
 END;
 $$ LANGUAGE 'plpgsql' STRICT;
 
+-- Iterating through customers data
+CREATE OR REPLACE FUNCTION itrCustomersID()
+    RETURNS INT AS
+$$ 
+DECLARE
+    row_data CustomerData%ROWTYPE;
+BEGIN
+    FOR row_data IN SELECT CustomerID FROM CustomerData loop
+        raise notice 'counter: %', row_data;
+    END LOOP;
+END; 
+$$ language 'plpgsql' STRICT;
+
+-- -- Iterating through Product Data
+CREATE OR REPLACE FUNCTION itrProductID()
+    RETURNS INT AS
+$$
+DECLARE 
+    row_product ProductsData%ROWTYPE; 
+BEGIN
+    FOR row_product IN SELECT ProductID FROM ProductsData LOOP
+        raise notice 'counter: %', row_product;
+    END LOOP;
+END;
+$$ 
+language 'plpgsql' STRICT;
 
 INSERT INTO SalesData(
     SaleID,
@@ -138,6 +161,9 @@ INSERT INTO SalesData(
     SaleDate,
     Quantity
 ) VALUES
-    (genSaleID(50,1),CustomerData.CustomerID,ProductsData.ProductID,genSaleDate('2023-12-1','2023-12-8'),genQuantity(10,1));
+    (genSaleID(50,1),(SELECT itrCustomersID()),(SELECT itrProductID()),genSaleDate('2023-12-1','2023-12-8'),genQuantity(10,1));
 
--- SELECT * FROM SalesData;
+SELECT * FROM itrCustomersID();
+SELECT * FROM itrProductID();
+
+SELECT * FROM SalesData;
